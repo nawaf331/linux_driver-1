@@ -1,0 +1,1 @@
+cmd_/home/android/module/scull/scull.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.8.0-19-generic/scripts/module-common.lds --build-id  -o /home/android/module/scull/scull.ko /home/android/module/scull/scull.o /home/android/module/scull/scull.mod.o
