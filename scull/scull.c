@@ -6,6 +6,7 @@
 #include <linux/slab.h>
 #include <linux/uaccess.h>
 #include <linux/semaphore.h>
+#include <linux/proc_fs.h>
 
 dev_t scull_major = 0, scull_minor = 0;
 dev_t dev_no;
@@ -29,7 +30,7 @@ struct scull_dev
     unsigned int access_key;
     struct semaphore sem;
     struct cdev cdev;
-} dev;
+} *dev;
 
 static void scull_setup_cdev(struct scull_dev *dev, int index);
 int scull_trim(struct scull_dev *dev);
@@ -40,6 +41,8 @@ ssize_t scull_write(struct file *filp, const char __user *buf, size_t count,
 ssize_t scull_read(struct file *filp, char __user *buf, size_t count,
 		   loff_t *f_pos);
 struct scull_qset* scull_follow(struct scull_dev *dev, int item);
+int scull_read_procmem(char *buf, char **start, off_t offset, int count,
+		       int *eof, void *data);
 
 struct file_operations scull_fops = {
     .owner = THIS_MODULE,
@@ -51,12 +54,21 @@ struct file_operations scull_fops = {
 
 static int __init scull_init(void)
 {
-    scull_setup_cdev(&dev, 0);
+    int i;
+    dev = (struct scull_dev*)kmalloc(sizeof(struct scull_dev) * scull_nr_devs, GFP_KERNEL);
+    for (i = 0; i < scull_nr_devs; i++)
+    {
+	scull_setup_cdev(&dev[i], i);
+    }
+    create_proc_read_entry("scullmem", 0, NULL, scull_read_procmem,
+			   NULL);
     return 0;
 }
 
 static void __exit scull_cleanup(void)
 {
+    if (dev)
+	kfree(dev);
     if (dev_no)
 	unregister_chrdev_region(dev_no, scull_nr_devs);
 }
@@ -96,7 +108,7 @@ int scull_trim(struct scull_dev *dev)
     struct scull_qset *next, *dptr;
     int qset = dev->qset;
     int i;
-    for (dptr = dev->data; dptr; dptr == next)
+    for (dptr = dev->data; dptr; dptr = next)
     {
 	if (dptr->data)
 	{
@@ -127,11 +139,13 @@ int scull_open(struct inode *inode, struct file *filp)
     {
 	scull_trim(dev);
     }
+
     return 0;
 }
 
 int scull_release(struct inode *inode, struct file *filp)
 {
+    remove_proc_entry("scullmem", NULL);
     return 0;
 }
 
@@ -275,4 +289,40 @@ struct scull_qset* scull_follow(struct scull_dev *dev, int n)
 	continue;
     }
     return qs;
+}
+
+int scull_read_procmem(char *buf, char **start, off_t offset, int count,
+		       int *eof, void *data)
+{
+    int i, j, len = 0;
+    int limit = count - 80;
+
+    for (i = 0; i < scull_nr_devs && len <= limit; i++)
+    {
+	struct scull_dev *d = &dev[i];
+	struct scull_qset *qs = d->data;
+	if (down_interruptible(&d->sem))
+	    return -ERESTARTSYS;
+	len += sprintf(buf + len, "\nDevice %i: qset %i, q %i, sz %li\n",
+		       i, d->qset, d->quantum, d->size);
+	for (; qs && len <= limit; qs = qs->next)
+	{
+	    len += sprintf(buf + len, "  item at %p, qset at %p\n",
+			   qs, qs->data);
+	    if (qs->data && !qs->next)
+	    {
+		for (j = 0; j < d->qset; j++)
+		{
+		    if (qs->data[j])
+		    {
+			len += sprintf(buf + len, "  %4i: %8p\n", j,
+				       qs->data[j]);
+		    }
+		}
+	    }
+	}
+	up(&dev[i].sem);
+    }
+    *eof = 1;
+    return len;
 }

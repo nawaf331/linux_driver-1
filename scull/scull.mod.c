@@ -21,18 +21,21 @@ __attribute__((section("__versions"))) = {
 	{ 0x2f287f0d, "copy_to_user" },
 	{ 0x2bc95bd4, "memset" },
 	{ 0x12da5bb2, "__kmalloc" },
-	{ 0xc4554217, "up" },
 	{ 0x362ef408, "_copy_from_user" },
-	{ 0x4792c572, "down_interruptible" },
-	{ 0x2c9189e, "kmem_cache_alloc_trace" },
-	{ 0x68c70c2d, "kmalloc_caches" },
-	{ 0x37a0cba, "kfree" },
 	{ 0x7485e15e, "unregister_chrdev_region" },
+	{ 0x37a0cba, "kfree" },
+	{ 0xe95b852a, "create_proc_entry" },
 	{ 0x50eedeb8, "printk" },
 	{ 0x60ac4203, "cdev_add" },
 	{ 0x3d3774b, "cdev_init" },
 	{ 0x29537c9e, "alloc_chrdev_region" },
 	{ 0xd8e484f0, "register_chrdev_region" },
+	{ 0x2c9189e, "kmem_cache_alloc_trace" },
+	{ 0x68c70c2d, "kmalloc_caches" },
+	{ 0x29b50afb, "remove_proc_entry" },
+	{ 0xc4554217, "up" },
+	{ 0x91715312, "sprintf" },
+	{ 0x4792c572, "down_interruptible" },
 	{ 0xb4390f9a, "mcount" },
 };
 
@@ -42,4 +45,4 @@ __attribute__((section(".modinfo"))) =
 "depends=";
 
 
-MODULE_INFO(srcversion, "7BA56E913F7C2E3646937CA");
+MODULE_INFO(srcversion, "3F9937ED342064268492EE0");

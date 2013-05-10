@@ -1,4 +1,4 @@
-cscope 15 $HOME/module/scull               0000012553
+cscope 15 $HOME/module/scull               0000014381
 	@scull.c
 
 1 
@@ -29,7 +29,15 @@ cscope 15 $HOME/module/scull               0000012553
 	~<lšux/uacûss.h
 >
 
-9 
+8 
+	~<lšux/£m­hÜe.h
+>
+
+9 
+	~<lšux/´oc_fs.h
+>
+
+11 
 dev_t
  
 	gscuÎ_majÜ
@@ -37,89 +45,81 @@ dev_t
 	gscuÎ_mšÜ
  = 0;
 
-10 
+12 
 dev_t
  
 	gdev_no
 ;
 
-12 cÚ¡ 
+14 cÚ¡ 
 	gscuÎ_Ä_devs
  = 1;
 
-13 cÚ¡ 
+15 cÚ¡ 
 	gscuÎ_q£t
  = 1000;
 
-14 cÚ¡ 
+16 cÚ¡ 
 	gscuÎ_quªtum
  = 4000;
 
-16 
+18 
 	sscuÎ_q£t
 
 
-18 **
+20 **
 	md©a
 ;
 
-19 
+21 
 scuÎ_q£t
  *
 	mÃxt
 ;
 
-22 
+24 
 	sscuÎ_dev
 
 
-24 
+26 
 scuÎ_q£t
  *
 	md©a
 ;
 
-25 
+27 
 	mquªtum
 ;
 
-26 
+28 
 	mq£t
 ;
 
-27 
+29 
 	msize
 ;
 
-28 
+30 
 	macûss_key
 ;
 
-29 
+31 
 £m­hÜe
  
 	m£m
 ;
 
-30 
+32 
 cdev
  
 	mcdev
 ;
 
-31 } 
+33 } *
 	gdev
 ;
 
-33 
-scuÎ_»gi¡”
-(
-dev_t
- *
-dev
-);
-
-34 
+35 
 scuÎ_£tup_cdev
 (
 scuÎ_dev
@@ -129,7 +129,7 @@ dev
 šdex
 );
 
-35 
+36 
 scuÎ_Œim
 (
 scuÎ_dev
@@ -137,7 +137,7 @@ scuÎ_dev
 dev
 );
 
-36 
+37 
 scuÎ_Ý’
 (
 šode
@@ -147,7 +147,7 @@ fže
 fžp
 );
 
-37 
+38 
 scuÎ_»Ëa£
 (
 šode
@@ -157,7 +157,7 @@ fže
 fžp
 );
 
-38 
+39 
 ssize_t
  
 scuÎ_wr™e
@@ -175,13 +175,13 @@ size_t
 couÁ
 ,
 
-39 
+40 
 loff_t
  *
 f_pos
 );
 
-40 
+41 
 ssize_t
  
 scuÎ_»ad
@@ -199,13 +199,13 @@ size_t
 couÁ
 ,
 
-41 
+42 
 loff_t
  *
 f_pos
 );
 
-42 
+43 
 scuÎ_q£t
 * 
 scuÎ_fÞlow
@@ -217,75 +217,123 @@ dev
 ™em
 );
 
-44 
+44 
+scuÎ_»ad_´ocmem
+(*
+buf
+, **
+¡¬t
+, 
+off_t
+ 
+off£t
+, 
+couÁ
+,
+
+45 *
+eof
+, *
+d©a
+);
+
+47 
 fže_Ý”©iÚs
  
 	gscuÎ_fÝs
  = {
 
-45 .
+48 .
 owÃr
  = 
 THIS_MODULE
 ,
 
-46 .
+49 .
 	g»ad
  = 
 scuÎ_»ad
 ,
 
-47 .
+50 .
 	gwr™e
  = 
 scuÎ_wr™e
 ,
 
-48 .
+51 .
 	gÝ’
  = 
 scuÎ_Ý’
 ,
 
-49 .
+52 .
 	g»Ëa£
  = 
 scuÎ_»Ëa£
 ,
 
-52 
+55 
 __š™
  
 	$scuÎ_š™
 ()
 
-54 
-”r
- = -
-ENOMEM
+57 
+i
 ;
 
-55 
+58 
+dev
+ = (
+scuÎ_dev
+*)
+	`km®loc
+((scuÎ_devè* 
+scuÎ_Ä_devs
+, 
+GFP_KERNEL
+);
+
+59 
+i
+ = 0; i < 
+scuÎ_Ä_devs
+; i++)
+
+61 
 	`scuÎ_£tup_cdev
 (&
 dev
-, 0);
+[
+i
+], i);
 
-57 
+64 
 	}
 }
 
-59 
+66 
 __ex™
  
 	$scuÎ_þ—nup
 ()
 
-61 ià(
+68 ià(
+dev
+)
+
+69 
+	`kä“
+(
+dev
+);
+
+70 ià(
 dev_no
 )
 
-62 
+71 
 	`uÄegi¡”_chrdev_»giÚ
 (
 dev_no
@@ -293,23 +341,23 @@ dev_no
 scuÎ_Ä_devs
 );
 
-63 
+72 
 	}
 }
 
-65 
+74 
 moduË_š™
 (
 scuÎ_š™
 );
 
-66 
+75 
 moduË_ex™
 (
 scuÎ_þ—nup
 );
 
-68 
+77 
 	$scuÎ_£tup_cdev
 (
 scuÎ_dev
@@ -319,15 +367,15 @@ dev
 šdex
 )
 
-70 
+79 
 »suÉ
  = 0;
 
-71 
+80 
 ”r
 ;
 
-72 
+81 
 devno
  = 
 	`MKDEV
@@ -339,11 +387,11 @@ scuÎ_mšÜ
 šdex
 );
 
-74 ià(
+83 ià(
 scuÎ_majÜ
 )
 
-76 
+85 
 dev_no
  = 
 	`MKDEV
@@ -353,7 +401,7 @@ scuÎ_majÜ
 scuÎ_mšÜ
 );
 
-77 
+86 
 »suÉ
  = 
 	`»gi¡”_chrdev_»giÚ
@@ -363,7 +411,7 @@ dev_no
 scuÎ_Ä_devs
 , "scull");
 
-81 
+90 
 »suÉ
  = 
 	`®loc_chrdev_»giÚ
@@ -375,7 +423,7 @@ scuÎ_mšÜ
 scuÎ_Ä_devs
 ,
 
-83 
+92 
 scuÎ_majÜ
  = 
 	`MAJOR
@@ -383,7 +431,7 @@ scuÎ_majÜ
 dev_no
 );
 
-86 
+95 
 	`cdev_š™
 (&
 dev
@@ -393,7 +441,7 @@ cdev
 scuÎ_fÝs
 );
 
-87 
+96 
 dev
 ->
 cdev
@@ -403,7 +451,7 @@ owÃr
 THIS_MODULE
 ;
 
-88 
+97 
 dev
 ->
 cdev
@@ -413,7 +461,7 @@ cdev
 scuÎ_fÝs
 ;
 
-89 
+98 
 ”r
  = 
 	`cdev_add
@@ -425,11 +473,11 @@ cdev
 devno
 , 1);
 
-91 if(
+100 if(
 ”r
 )
 
-92 
+101 
 	`´štk
 (
 KERN_NOTICE
@@ -439,11 +487,11 @@ KERN_NOTICE
 šdex
 );
 
-93 
+102 
 	}
 }
 
-95 
+104 
 	$scuÎ_Œim
 (
 scuÎ_dev
@@ -451,7 +499,7 @@ scuÎ_dev
 dev
 )
 
-97 
+106 
 scuÎ_q£t
  *
 Ãxt
@@ -459,39 +507,39 @@ scuÎ_q£t
 d±r
 ;
 
-98 
+107 
 q£t
  = 
 dev
 ->qset;
 
-99 
+108 
 i
 ;
 
-100 
+109 
 d±r
  = 
 dev
 ->
 d©a
-; d±r; d±¸=ð
+; d±r; d±¸ð
 Ãxt
 )
 
-102 ià(
+111 ià(
 d±r
 ->
 d©a
 )
 
-104 
+113 
 i
  = 0; i < 
 q£t
 ; i++)
 
-106 
+115 
 	`kä“
 (
 d±r
@@ -501,7 +549,7 @@ d©a
 i
 ]);
 
-108 
+117 
 	`kä“
 (
 d±r
@@ -509,7 +557,7 @@ d±r
 d©a
 );
 
-109 
+118 
 d±r
 ->
 d©a
@@ -517,25 +565,25 @@ d©a
 NULL
 ;
 
-111 
+120 
 Ãxt
  = 
 d±r
 ->next;
 
-112 
+121 
 	`kä“
 (
 d±r
 );
 
-114 
+123 
 dev
 ->
 size
  = 0;
 
-115 
+124 
 dev
 ->
 quªtum
@@ -543,7 +591,7 @@ quªtum
 scuÎ_quªtum
 ;
 
-116 
+125 
 dev
 ->
 q£t
@@ -551,7 +599,7 @@ q£t
 scuÎ_q£t
 ;
 
-117 
+126 
 dev
 ->
 d©a
@@ -559,11 +607,11 @@ d©a
 NULL
 ;
 
-119 
+128 
 	}
 }
 
-121 
+130 
 	$scuÎ_Ý’
 (
 šode
@@ -573,13 +621,13 @@ fže
 fžp
 )
 
-123 
+132 
 scuÎ_dev
  *
 dev
 ;
 
-124 
+133 
 dev
  = 
 	`cÚš”_of
@@ -593,7 +641,7 @@ scuÎ_dev
 cdev
 );
 
-125 
+134 
 fžp
 ->
 ´iv©e_d©a
@@ -601,7 +649,7 @@ fžp
 dev
 ;
 
-127 iàÐ(
+136 iàÐ(
 fžp
 ->
 f_æags
@@ -611,17 +659,29 @@ O_ACCMODE
 O_WRONLY
 )
 
-129 
+138 
 	`scuÎ_Œim
 (
 dev
 );
 
-132 
+140 
+	`ü—‹_´oc_»ad_’Œy
+("scuÎmem", 0, 
+NULL
+, 
+scuÎ_»ad_´ocmem
+,
+
+141 
+NULL
+);
+
+143 
 	}
 }
 
-134 
+145 
 	$scuÎ_»Ëa£
 (
 šode
@@ -631,11 +691,17 @@ fže
 fžp
 )
 
-137 
+147 
+	`»move_´oc_’Œy
+("scuÎmem", 
+NULL
+);
+
+149 
 	}
 }
 
-139 
+151 
 ssize_t
  
 	$scuÎ_»ad
@@ -653,13 +719,13 @@ size_t
 couÁ
 ,
 
-140 
+152 
 loff_t
  *
 f_pos
 )
 
-142 
+154 
 scuÎ_dev
  *
 dev
@@ -669,13 +735,13 @@ fžp
 ´iv©e_d©a
 ;
 
-143 
+155 
 scuÎ_q£t
  *
 d±r
 ;
 
-144 
+156 
 quªtum
  = 
 dev
@@ -683,7 +749,7 @@ dev
 q£t
  = dev->qset;
 
-145 
+157 
 ™emsize
  = 
 quªtum
@@ -691,7 +757,7 @@ quªtum
 q£t
 ;
 
-146 
+158 
 ™em
 , 
 s_pos
@@ -701,13 +767,13 @@ q_pos
 »¡
 ;
 
-147 
+159 
 ssize_t
  
 »tv®
  = 0;
 
-149 ià(
+161 ià(
 	`down_š‹¼u±ibË
 (&
 dev
@@ -715,11 +781,11 @@ dev
 £m
 ))
 
-151  -
+163  -
 ERESTARTSYS
 ;
 
-153 ià(*
+165 ià(*
 f_pos
  >ð
 dev
@@ -727,11 +793,11 @@ dev
 size
 )
 
-155 
+167 
 out
 ;
 
-157 ià(*
+169 ià(*
 f_pos
  + 
 couÁ
@@ -741,7 +807,7 @@ dev
 size
 )
 
-159 
+171 
 couÁ
  = 
 dev
@@ -751,7 +817,7 @@ size
 f_pos
 ;
 
-162 
+174 
 ™em
  = ()*
 f_pos
@@ -759,7 +825,7 @@ f_pos
 ™emsize
 ;
 
-163 
+175 
 »¡
  = ()*
 f_pos
@@ -767,7 +833,7 @@ f_pos
 ™emsize
 ;
 
-164 
+176 
 s_pos
  = 
 »¡
@@ -775,7 +841,7 @@ s_pos
 quªtum
 ;
 
-165 
+177 
 q_pos
  = 
 »¡
@@ -783,7 +849,7 @@ q_pos
 quªtum
 ;
 
-167 
+179 
 d±r
  = 
 	`scuÎ_fÞlow
@@ -793,7 +859,7 @@ dev
 ™em
 );
 
-169 ià(
+181 ià(
 d±r
  =ð
 NULL
@@ -803,11 +869,11 @@ d©a
 s_pos
 ])
 
-171 
+183 
 out
 ;
 
-173 ià(
+185 ià(
 couÁ
  > 
 quªtum
@@ -815,7 +881,7 @@ quªtum
 q_pos
 )
 
-175 
+187 
 couÁ
  = 
 quªtum
@@ -823,7 +889,7 @@ quªtum
 q_pos
 ;
 
-177 ià(
+189 ià(
 	`cÝy_to_u£r
 (
 buf
@@ -839,33 +905,33 @@ q_pos
 couÁ
 ))
 
-179 
+191 
 »tv®
  = -
 EFAULT
 ;
 
-180 
+192 
 out
 ;
 
-182 *
+194 *
 f_pos
  +ð
 couÁ
 ;
 
-183 
+195 
 »tv®
  = 
 couÁ
 ;
 
-185 
+197 
 out
 :
 
-186 
+198 
 	`up
 (&
 dev
@@ -873,15 +939,15 @@ dev
 £m
 );
 
-187  
+199  
 »tv®
 ;
 
-188 
+200 
 	}
 }
 
-190 
+202 
 ssize_t
  
 	$scuÎ_wr™e
@@ -899,13 +965,13 @@ size_t
 couÁ
 ,
 
-191 
+203 
 loff_t
  *
 f_pos
 )
 
-193 
+205 
 scuÎ_dev
  *
 dev
@@ -915,13 +981,13 @@ fžp
 ´iv©e_d©a
 ;
 
-194 
+206 
 scuÎ_q£t
  *
 d±r
 ;
 
-195 
+207 
 quªtum
  = 
 dev
@@ -929,7 +995,7 @@ dev
 q£t
  = dev->qset;
 
-196 
+208 
 ™emsize
  = 
 quªtum
@@ -937,7 +1003,7 @@ quªtum
 q£t
 ;
 
-197 
+209 
 ™em
 , 
 s_pos
@@ -947,7 +1013,7 @@ q_pos
 »¡
 ;
 
-198 
+210 
 ssize_t
  
 »tv®
@@ -955,19 +1021,19 @@ ssize_t
 ENOMEM
 ;
 
-200 ià(
-	`down_š‹¼upibË
+212 ià(
+	`down_š‹¼u±ibË
 (&
 dev
 ->
 £m
 ))
 
-202  -
+214  -
 ERESTARTSYS
 ;
 
-205 
+217 
 ™em
  = (è*
 f_pos
@@ -975,7 +1041,7 @@ f_pos
 ™emsize
 ;
 
-206 
+218 
 »¡
  = (è*
 f_pos
@@ -983,7 +1049,7 @@ f_pos
 ™emsize
 ;
 
-207 
+219 
 s_pos
  = 
 »¡
@@ -991,7 +1057,7 @@ s_pos
 quªtum
 ;
 
-208 
+220 
 q_pos
  = 
 »¡
@@ -999,7 +1065,7 @@ q_pos
 quªtum
 ;
 
-210 
+222 
 d±r
  = 
 	`scuÎ_fÞlow
@@ -1009,23 +1075,23 @@ dev
 ™em
 );
 
-211 ià(
+223 ià(
 d±r
  =ð
 NULL
 )
 
-213 
+225 
 out
 ;
 
-215 ià(!
+227 ià(!
 d±r
 ->
 d©a
 )
 
-217 
+229 
 d±r
 ->
 d©a
@@ -1037,17 +1103,17 @@ q£t
 GFP_KERNEL
 );
 
-218 ià(!
+230 ià(!
 d±r
 ->
 d©a
 )
 
-220 
+232 
 out
 ;
 
-222 
+234 
 	`mem£t
 (
 d±r
@@ -1057,7 +1123,7 @@ d©a
 q£t
  * (*));
 
-224 ià(!
+236 ià(!
 d±r
 ->
 d©a
@@ -1065,7 +1131,7 @@ d©a
 s_pos
 ])
 
-226 
+238 
 d±r
 ->
 d©a
@@ -1079,7 +1145,7 @@ quªtum
 GFP_KERNEL
 );
 
-227 ià(!
+239 ià(!
 d±r
 ->
 d©a
@@ -1087,11 +1153,11 @@ d©a
 s_pos
 ])
 
-229 
+241 
 out
 ;
 
-233 ià(
+245 ià(
 couÁ
  > 
 quªtum
@@ -1099,7 +1165,7 @@ quªtum
 q_pos
 )
 
-235 
+247 
 couÁ
  = 
 quªtum
@@ -1107,7 +1173,7 @@ quªtum
 q_pos
 ;
 
-237 ià(
+249 ià(
 	`cÝy_äom_u£r
 (
 d±r
@@ -1123,29 +1189,29 @@ buf
 couÁ
 ))
 
-239 
+251 
 »tv®
  = -
 EFAULT
 ;
 
-240 
+252 
 out
 ;
 
-242 *
+254 *
 f_pos
  +ð
 couÁ
 ;
 
-243 
+255 
 »tv®
  = 
 couÁ
 ;
 
-245 ià(
+257 ià(
 dev
 ->
 size
@@ -1153,7 +1219,7 @@ size
 f_pos
 )
 
-246 
+258 
 dev
 ->
 size
@@ -1161,11 +1227,11 @@ size
 f_pos
 ;
 
-248 
+260 
 out
 :
 
-249 
+261 
 	`up
 (&
 dev
@@ -1173,15 +1239,15 @@ dev
 £m
 );
 
-250  
+262  
 »tv®
 ;
 
-251 
+263 
 	}
 }
 
-253 
+265 
 scuÎ_q£t
 * 
 	$scuÎ_fÞlow
@@ -1190,10 +1256,10 @@ scuÎ_dev
  *
 dev
 , 
-™em
+n
 )
 
-255 
+267 
 scuÎ_q£t
  *
 qs
@@ -1203,11 +1269,11 @@ dev
 d©a
 ;
 
-256 ià(!
+268 ià(!
 qs
 )
 
-258 
+270 
 qs
  = 
 dev
@@ -1221,17 +1287,17 @@ scuÎ_q£t
 GFP_KERNEL
 );
 
-259 ià(
+271 ià(
 qs
  =ð
 NULL
 )
 
-261  
+273  
 NULL
 ;
 
-263 
+275 
 	`mem£t
 (
 qs
@@ -1239,29 +1305,29 @@ qs
 scuÎ_q£t
 ));
 
-266 
+278 
 n
 --)
 
-268 ià(!
+280 ià(!
 qs
 ->
 Ãxt
 )
 
-270 
+282 
 qs
 ->
 Ãxt
  = 
-	`m®loc
+	`km®loc
 ((
 scuÎ_q£t
 ), 
 GFP_KERNEL
 );
 
-271 ià(
+283 ià(
 qs
 ->
 Ãxt
@@ -1269,11 +1335,11 @@ qs
 NULL
 )
 
-272  
+284  
 NULL
 ;
 
-273 
+285 
 	`mem£t
 (
 qs
@@ -1283,19 +1349,301 @@ qs
 scuÎ_q£t
 ));
 
-275 
+287 
 qs
  = qs->
 Ãxt
 ;
 
-278  
+290  
 qs
 ;
 
-279 
+291 
 	}
 }
+
+293 
+	$scuÎ_»ad_´ocmem
+(*
+buf
+, **
+¡¬t
+, 
+off_t
+ 
+off£t
+, 
+couÁ
+,
+
+294 *
+eof
+, *
+d©a
+)
+
+296 
+i
+, 
+j
+, 
+Ën
+ = 0;
+
+297 
+lim™
+ = 
+couÁ
+ - 80;
+
+299 
+i
+ = 0; i < 
+scuÎ_Ä_devs
+ && 
+Ën
+ <ð
+lim™
+; i++)
+
+301 
+scuÎ_dev
+ *
+d
+ = &
+dev
+[
+i
+];
+
+302 
+scuÎ_q£t
+ *
+qs
+ = 
+d
+->
+d©a
+;
+
+303 ià(
+	`down_š‹¼u±ibË
+(&
+d
+->
+£m
+))
+
+304  -
+ERESTARTSYS
+;
+
+305 
+Ën
+ +ð
+	`¥rštf
+(
+buf
+ +†en, "\nDevice %i: qset %i, q %i, sz %li\n",
+
+306 
+i
+, 
+d
+->
+q£t
+, d->
+quªtum
+, d->
+size
+);
+
+307 ; 
+qs
+ && 
+Ën
+ <ð
+lim™
+; q ðqs->
+Ãxt
+)
+
+309 
+Ën
+ +ð
+	`¥rštf
+(
+buf
+ +†en, " item‡t %p, qset‡t %p\n",
+
+310 
+qs
+, qs->
+d©a
+);
+
+311 ià(
+qs
+->
+d©a
+ && !qs->
+Ãxt
+)
+
+313 
+j
+ = 0; j < 
+d
+->
+q£t
+; j++)
+
+315 ià(
+qs
+->
+d©a
+[
+j
+])
+
+317 
+Ën
+ +ð
+	`¥rštf
+(
+buf
+ +†’, " %4i: %8p\n", 
+j
+,
+
+318 
+qs
+->
+d©a
+[
+j
+]);
+
+323 
+	`up
+(&
+dev
+[
+i
+].
+£m
+);
+
+325 *
+eof
+ = 1;
+
+326  
+Ën
+;
+
+327 
+	}
+}
+
+	@scull.mod.c
+
+1 
+	~<lšux/moduË.h
+>
+
+2 
+	~<lšux/v”magic.h
+>
+
+3 
+	~<lšux/compž”.h
+>
+
+5 
+MODULE_INFO
+(
+v”magic
+, 
+VERMAGIC_STRING
+);
+
+7 
+moduË
+ 
+__this_moduË
+
+
+8 
+__©Œibu‹__
+((
+£ùiÚ
+(".gnu.linkonce.this_module"))) = {
+
+9 .
+Çme
+ = 
+KBUILD_MODNAME
+,
+
+10 .
+	gš™
+ = 
+š™_moduË
+,
+
+11 #ifdeà
+CONFIG_MODULE_UNLOAD
+
+
+12 .
+	gex™
+ = 
+þ—nup_moduË
+,
+
+14 .
+	g¬ch
+ = 
+MODULE_ARCH_INIT
+,
+
+17 cÚ¡ 
+modv”siÚ_šfo
+ 
+	g____v”siÚs
+[]
+
+18 
+__u£d
+
+
+19 
+__©Œibu‹__
+((
+£ùiÚ
+("__versions"))) = {
+
+42 cÚ¡ 
+	g__moduË_d•’ds
+[]
+
+43 
+__u£d
+
+
+44 
+__©Œibu‹__
+((
+£ùiÚ
+(".modinfo"))) =
+
+48 
+MODULE_INFO
+(
+¤cv”siÚ
+, "F08769749AFA962294D2FFE");
 
 	@/usr/include/linux/fs.h
 
@@ -2520,9 +2868,10 @@ __FD_SETSIZE
 .
 1
 /usr/include
-7
-175
+8
+187
 scull.c
+scull.mod.c
 /usr/include/linux/fs.h
 /usr/include/linux/types.h
 /usr/include/linux/ioctl.h

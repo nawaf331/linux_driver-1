@@ -602,6 +602,18 @@ deps_/home/android/module/scull/scull.o := \
     $(wildcard include/config/x86/smap.h) \
   /usr/src/linux-headers-3.8.0-19-generic/arch/x86/include/asm/uaccess_32.h \
     $(wildcard include/config/debug/strict/user/copy/checks.h) \
+  include/linux/proc_fs.h \
+    $(wildcard include/config/proc/devicetree.h) \
+    $(wildcard include/config/proc/kcore.h) \
+  /usr/src/linux-headers-3.8.0-19-generic/include/uapi/linux/magic.h \
+  include/linux/signal.h \
+  include/uapi/linux/signal.h \
+  /usr/src/linux-headers-3.8.0-19-generic/arch/x86/include/asm/signal.h \
+  /usr/src/linux-headers-3.8.0-19-generic/arch/x86/include/uapi/asm/signal.h \
+  /usr/src/linux-headers-3.8.0-19-generic/include/uapi/asm-generic/signal-defs.h \
+  /usr/src/linux-headers-3.8.0-19-generic/arch/x86/include/uapi/asm/siginfo.h \
+  include/asm-generic/siginfo.h \
+  include/uapi/asm-generic/siginfo.h \
 
 /home/android/module/scull/scull.o: $(deps_/home/android/module/scull/scull.o)
 
